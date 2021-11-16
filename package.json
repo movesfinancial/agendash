@@ -39,7 +39,8 @@
   "dependencies": {
     "agenda": "^4.2.1",
     "body-parser": "^1.19.2",
-    "commander": "^2.9.0",
+    "commander": "^8.3.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.3",
     "mongodb": "*",
     "semver": "^7.3.4"
