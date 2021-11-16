@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 "use strict";
+const program = require("./agendash-options");
+
 const Agenda = require("agenda");
 const agendash = require("../app");
 const Koa = require("koa");
-const program = require("./agendash-options");
 
 const init = async () => {
   const agenda = new Agenda().database(program.db, program.collection);

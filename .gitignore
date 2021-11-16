@@ -34,3 +34,7 @@ node_modules
 
 .DS_Store
 .idea
+
+# do not commit env variables (except examples)
+.env*
+!.env*.template
