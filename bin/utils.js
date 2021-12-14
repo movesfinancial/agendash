@@ -40,7 +40,7 @@ const attachExitHandlers = (exitCallback = (code = 1) => { process.exit(code)}) 
 const JOB_EXPIRATION_DURATION = dayjs.duration(1, 'hour');
 const JOB_EXPIRATION_DURATION_STR = JOB_EXPIRATION_DURATION.humanize();
 
-const CLEANUP_INTERVAL_MS = _.toNumber(ms('2 min'));
+const CLEANUP_INTERVAL_MS = _.toNumber(ms('1 hour'));
 const CLEANUP_INTERVAL_STR = dayjs.duration(CLEANUP_INTERVAL_MS, 'ms').humanize(true);
 
 const cleanupStaleJobs = (agenda) => {
