@@ -59,7 +59,7 @@ const cleanupStaleJobs = (agenda) => {
         const now = dayjs();
         const expirationTime = now.subtract(JOB_EXPIRATION_DURATION);
 
-        await collection.find().forEach((job) => {
+        await collection.find({ type: 'normal' }).forEach((job) => {
           const jobId = job._id;
           const lastFinishedAt = dayjs(job.lastFinishedAt);
           if (!lastFinishedAt.isValid()) {
