@@ -46,10 +46,12 @@ const CLEANUP_INTERVAL_STR = dayjs.duration(CLEANUP_INTERVAL_MS, 'ms').humanize(
 const cleanupStaleJobs = (agenda) => {
   const cleanup = () => {
     void (async () => {
-      console.log('Stale job cleanup started ...');
-      let cleanupCount = 0;
+      console.log(`Cleaning-up completed one-shot jobs older than ${JOB_EXPIRATION_DURATION_STR} ...`);
 
       try {
+        let cleanupCount = 0;
+        let totalJobCount = 0;
+
         const collection = agenda._collection || agenda._collection.collection;
         if (!collection) {
           console.log(`Cannot perform cleanup: agenda.collection not found!`);
@@ -60,10 +62,16 @@ const cleanupStaleJobs = (agenda) => {
         const expirationTime = now.subtract(JOB_EXPIRATION_DURATION);
 
         await collection.find({ type: 'normal' }).forEach((job) => {
+          totalJobCount++;
           const jobId = job._id;
+
+          if (!job.lastFinishedAt) {
+            // skip job since it hasn't finished yet
+            return;
+          }
           const lastFinishedAt = dayjs(job.lastFinishedAt);
           if (!lastFinishedAt.isValid()) {
-            console.log(`Job [${job._id}] has an invalid lastFinishedAt`);
+            console.log(`[${job._id}] Skipping job due to invalid lastFinishedAt date`);
             return;
           }
 
@@ -75,12 +83,11 @@ const cleanupStaleJobs = (agenda) => {
             cleanupCount++;
           }
         })
-      } catch (e) {
-        const error = serializeError(e);
-        console.log(`cleanupStaleJobs failed with error`, error)
-      }
 
-      console.log(`Clean-up performed for ${cleanupCount} job(s)! Next cleanup runs ${CLEANUP_INTERVAL_STR}.`);
+        console.log(`Cleaned-up ${cleanupCount}/${totalJobCount} one-shot job(s)! Next cleanup runs ${CLEANUP_INTERVAL_STR}.`);
+      } catch (e) {
+        console.log(`Stale job cleanup procedure failed with exception: `, { error: serializeError(e) })
+      }
     })();
 
     setTimeout(cleanup, CLEANUP_INTERVAL_MS);
