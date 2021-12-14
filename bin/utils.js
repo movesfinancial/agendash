@@ -27,11 +27,11 @@ const attachExitHandlers = (exitCallback = (code = 1) => { process.exit(code)}) 
       exitCallback();
     })
     .on('uncaughtException', (error, origin) => {
-      console.log(`uncaughtException received\n${JSON.stringify({ error, origin })}`);
+      console.log(`uncaughtException received`, { error: serializeError(error), origin });
       exitCallback();
     })
     .on('unhandledRejection', (reason) => {
-      console.log(`unhandledRejection received\n${JSON.stringify({ reason })}`);
+      console.log(`unhandledRejection received`, { reason });
       exitCallback();
     });
 };
