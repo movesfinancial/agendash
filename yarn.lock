@@ -2110,7 +2110,7 @@ http-errors@~1.6.2:
     setprototypeof "1.1.0"
     statuses ">= 1.4.0 < 2"
 
-human-interval@~2.0.0:
+human-interval@^2.0.1, human-interval@~2.0.0:
   version "2.0.1"
   resolved "https://registry.npmjs.org/human-interval/-/human-interval-2.0.1.tgz"
   integrity sha512-r4Aotzf+OtKIGQCB3odUowy4GfUDTy3aTWTfLd7ZF2gBCy3XW3v/dJLRefZnOFFnjqs5B1TypvS8WarpBkYUNQ==
@@ -2430,6 +2430,11 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
+
+iso-datestring-validator@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/iso-datestring-validator/-/iso-datestring-validator-2.2.0.tgz#35a2e493671bd387be51067182e82dbea760ac54"
+  integrity sha512-F0ndAqS+GE8HoMCmVSnU0Ok/nOKcHxa2p+/59Ba8MvaRbQp6qkPOvgUSQqN43OTyCwx8FKK+2rX7eDgxkPqyFQ==
 
 js-string-escape@^1.0.1:
   version "1.0.1"
