@@ -48,6 +48,18 @@ program.addOption(
     .default("/")
     .env('AGENDASH_PATH'));
 
+program.addOption(
+  new Option(
+    "--notify <notify>",
+    "[optional] Comma-separated list of emails to deliver job failure notifications. Notifications disabled if not set!")
+    .env('AGENDASH_NOTIFY_EMAILS'));
+
+program.addOption(
+  new Option(
+    "--env <env>",
+    "[optional] Environment where agendash is running. If not set, NODE_ENV will be used!")
+    .env('AGENDASH_ENV'));
+
 program.parse(process.argv);
 const options = program.opts()
 
