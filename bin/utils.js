@@ -152,7 +152,7 @@ const notifyOnFailure = (agenda, notificationList, agendashEnv) => {
         console.log(`Scanning failed jobs to notify admins ...`);
 
         // find all "failed" jobs.
-        // definition of failed lifted from: https://github.com/agenda/agendash/blob/308e7debc4474e4302ea87d353bca70d12190f3b/lib/controllers/agendash.js#L92
+        // query lifted from: https://github.com/agenda/agendash/blob/308e7debc4474e4302ea87d353bca70d12190f3b/lib/controllers/agendash.js#L92
         const failedJobs = await jobsCollection.find({
           $expr: { $and: [
               "$lastFinishedAt",
@@ -171,7 +171,7 @@ const notifyOnFailure = (agenda, notificationList, agendashEnv) => {
           const job = await failedJobs.next();
           const { _id, failedAt, name } = job;
 
-          // since we're filtering by _id, we don't expect to find either 0 or 1 entities
+          // since we're filtering by _id, we expect to find either 0 or 1 entities
           const didSendNotification = await notifyCollection.findOne({ _id, failedAt });
 
           if (!didSendNotification) {
