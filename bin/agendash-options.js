@@ -51,7 +51,7 @@ program.addOption(
 program.addOption(
   new Option(
     "--notify <notify>",
-    "[optional] Comma-separated list of emails to send job failure notifications to. Notifications disabled if not set!")
+    "[optional] Comma-separated list of emails to deliver job failure notifications. Notifications disabled if not set!")
     .env('AGENDASH_NOTIFY_EMAILS'));
 
 program.addOption(
