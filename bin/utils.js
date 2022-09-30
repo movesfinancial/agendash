@@ -203,7 +203,12 @@ const notifyOnFailure = (agenda, notificationList, agendashEnv) => {
               }
             }
 
-            // create a notification record
+            // create a 'notification record', to notify AT-MOST once per failure
+            /**
+             * Notice that the notification record is generated on a best-effort-basis:
+             *   i.e. we don't gate notification record generation on success of email delivery;
+             *   we would rather not spam the admin with spurious emails than miss a few notifications ...
+             */
             await notifyCollection.replaceOne({ _id }, {
               failedAt,
               notification: {
