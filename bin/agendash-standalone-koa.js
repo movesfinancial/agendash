@@ -24,7 +24,7 @@ const init = async () => {
   console.log("Server running on port %s", program.port);
 
   cleanupStaleJobs(agenda);
-  notifyOnFailure(agenda, program.notify);
+  notifyOnFailure(agenda, program.notify, program.env);
 };
 
 // noinspection JSIgnoredPromiseFromCall

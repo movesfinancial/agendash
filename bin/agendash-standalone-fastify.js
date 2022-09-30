@@ -26,4 +26,4 @@ fastify.listen(program.port, function () {
 });
 
 cleanupStaleJobs(agenda);
-notifyOnFailure(agenda, program.notify);
+notifyOnFailure(agenda, program.notify, program.env);

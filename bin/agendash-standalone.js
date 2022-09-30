@@ -30,4 +30,4 @@ server.listen(program.port, () => {
 });
 
 cleanupStaleJobs(agenda);
-notifyOnFailure(agenda, program.notify);
+notifyOnFailure(agenda, program.notify, program.env);

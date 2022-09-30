@@ -51,9 +51,14 @@ program.addOption(
 program.addOption(
   new Option(
     "--notify <notify>",
-    "[optional] Comma-separated list of emails to send job failure notifications to")
-    .default("devops@movesfinancial.com")
+    "[optional] Comma-separated list of emails to send job failure notifications to. Notifications disabled if not set!")
     .env('AGENDASH_NOTIFY_EMAILS'));
+
+program.addOption(
+  new Option(
+    "--env <env>",
+    "[optional] Environment where agendash is running. If not set, NODE_ENV will be used!")
+    .env('AGENDASH_ENV'));
 
 program.parse(process.argv);
 const options = program.opts()
